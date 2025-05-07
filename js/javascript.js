@@ -1,46 +1,76 @@
-/**
- * MENANGANI PERILAKU NAVBAR RESPONSIF
- * Kode ini dijalankan setelah seluruh konten DOM selesai dimuat
- */
 document.addEventListener("DOMContentLoaded", function () {
-  // ==================== INISIALISASI FEATHER ICONS ====================
-  // Mengkonversi semua elemen dengan atribut data-feather menjadi ikon SVG
   feather.replace();
 
-  // ==================== SELEKSI ELEMEN DOM ====================
-  // Temukan menu navigasi utama
+  // Seleksi Elemen
   const navbarNav = document.querySelector(".navbar-nav");
-  // Temukan tombol menu hamburger
   const hamburger = document.querySelector("#hamburger-menu");
-  // Temukan form pencarian
   const searchForm = document.querySelector(".search-form");
-  // Temukan tombol pencarian
   const searchButton = document.querySelector("#search-button");
+  const searchBox = document.querySelector("#search-box");
+  const shoppingCardButton = document.querySelector("#shopping-card-button");
+  const shoppingCard = document.querySelector(".shopping-card");
+  const itemDetailModal = document.querySelector("#item-detail-modal");
+  const itemDetailButtons = document.querySelectorAll(".item-detail-button");
+  const closeModal = document.querySelector(".modal .close-icon");
 
-  // ==================== TOGGLE MENU HAMBURGER ====================
+  // Hamburger Menu
   hamburger.addEventListener("click", function (e) {
-    // Mencegah perilaku default link
     e.preventDefault();
-    // Menghentikan propagasi event ke parent elements
-    e.stopPropagation();
-    // Toggle class 'active' untuk menampilkan/menyembunyikan menu
     navbarNav.classList.toggle("active");
   });
 
-  // ==================== TOGGLE SEARCH FORM ====================
+  // Search Form
   searchButton.addEventListener("click", function (e) {
-    // Mencegah perilaku default tombol
     e.preventDefault();
-    // Toggle class 'active' untuk menampilkan/menyembunyikan form pencarian
     searchForm.classList.toggle("active");
+    searchBox.focus();
   });
 
-  // ==================== MENUTUP MENU SAAT KLIK DI LUAR ====================
+  // Shopping Card (Cart)
+  shoppingCardButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    shoppingCard.classList.toggle("active");
+  });
+
+  // Item Detail Modal
+  itemDetailButtons.forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      itemDetailModal.style.display = "flex";
+    });
+  });
+
+  // Close Modal
+  closeModal.addEventListener("click", function (e) {
+    e.preventDefault();
+    itemDetailModal.style.display = "none";
+  });
+
+  // Klik di luar modal
+  window.addEventListener("click", function (e) {
+    if (e.target === itemDetailModal) {
+      itemDetailModal.style.display = "none";
+    }
+  });
+
+  // Tutup Element Saat Klik di Luar
   document.addEventListener("click", function (e) {
-    // Jika yang diklik BUKAN hamburger DAN BUKAN navbarNav
+    // Tutup Navbar
     if (!hamburger.contains(e.target) && !navbarNav.contains(e.target)) {
-      // Hapus class 'active' untuk menyembunyikan menu
       navbarNav.classList.remove("active");
+    }
+
+    // Tutup Search Form
+    if (!searchButton.contains(e.target) && !searchForm.contains(e.target)) {
+      searchForm.classList.remove("active");
+    }
+
+    // Tutup Shopping Card
+    if (
+      !shoppingCardButton.contains(e.target) &&
+      !shoppingCard.contains(e.target)
+    ) {
+      shoppingCard.classList.remove("active");
     }
   });
 });
