@@ -177,8 +177,8 @@ body {
   background-size: cover;
   background-position: center;
   position: relative;
-  -webkit-mask-image:linear-gradient(rgba(0,0,0,1) 85%,rgba(0,0,0,0)) ;
-  mask-image:linear-gradient(rgba(0,0,0,1) 85%, (0,0,0,0)) ;
+  -webkit-mask-image: linear-gradient(rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 0));
+  mask-image: linear-gradient(rgba(0, 0, 0, 1) 85%, (0, 0, 0, 0));
 }
 
 /* .hero::after {
@@ -266,7 +266,7 @@ body {
   -webkit-mask-image: url(../img/42879.svg);
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position:center;
+  -webkit-mask-position: center;
 }
 .about .row .about-img img {
   width: 100%;
@@ -410,6 +410,7 @@ body {
   background-color: var(--bg);
   border: 1px solid #eee;
   padding-left: 2rem;
+  border-radius: 30px;
 }
 
 .contact .row form .input-group input {
@@ -428,6 +429,7 @@ body {
   color: #fff;
   background-color: var(--primary);
   cursor: pointer;
+  border-radius: 30px;
 }
 
 /* footer */
